@@ -1,4 +1,4 @@
-package estudo.projeto.port;
+package estudo.projeto.port.out;
 
 public interface SubordinadosPort {
     boolean hasSubordinados(Long superiorId);

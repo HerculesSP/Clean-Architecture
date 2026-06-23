@@ -1,4 +1,4 @@
-package estudo.projeto.port;
+package estudo.projeto.port.out;
 
 import estudo.projeto.entity.Usuario;
 
