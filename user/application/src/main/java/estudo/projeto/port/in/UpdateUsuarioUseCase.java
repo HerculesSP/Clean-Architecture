@@ -2,25 +2,29 @@ package estudo.projeto.port.in;
 
 import estudo.projeto.entity.Usuario;
 import estudo.projeto.exception.NotFoundException;
-import estudo.projeto.port.in.Command.CreateUsuarioCommand;
+import estudo.projeto.port.in.Command.UpdateUsuarioCommand;
 import estudo.projeto.port.in.Specification.UsuarioSpecification;
 import estudo.projeto.port.out.SaveUsuarioPort;
 import estudo.projeto.port.out.UsuarioFindPort;
 
 import java.util.List;
 
-public class CreateUsuarioUseCase {
+public class UpdateUsuarioUseCase {
+
     private final UsuarioFindPort usuarioFindPort;
     private final SaveUsuarioPort saveUsuarioPort;
     private final List<UsuarioSpecification> validations;
 
-    public CreateUsuarioUseCase(UsuarioFindPort usuarioFindPort, SaveUsuarioPort saveUsuarioPort, List<UsuarioSpecification> validations) {
+    public UpdateUsuarioUseCase(UsuarioFindPort usuarioFindPort, SaveUsuarioPort saveUsuarioPort, List<UsuarioSpecification> validations) {
         this.usuarioFindPort = usuarioFindPort;
         this.saveUsuarioPort = saveUsuarioPort;
         this.validations = validations;
     }
 
-    public Usuario executar(CreateUsuarioCommand command){
+
+    public Usuario executar(UpdateUsuarioCommand command){
+        Usuario usuario = usuarioFindPort.findById(command.id())
+                .orElseThrow(() -> new NotFoundException("Usuário com ID: " + command.id() + " não encontrado."));
 
         Usuario superior = null;
         if (command.superiorId() != null) {
@@ -28,10 +32,11 @@ public class CreateUsuarioUseCase {
                     .orElseThrow(() -> new NotFoundException("Superior com o Id " + command.superiorId() + " não encontrado."));
         }
 
-        Usuario usuario = new Usuario(null, command.nome(), command.email(), command.cargo(), superior);
+        usuario.atualizarDados(command.nome(), command.email(), command.cargo(), superior);
 
         validations.forEach(usuarioSpecification -> usuarioSpecification.validar(usuario));
 
         return saveUsuarioPort.salvar(usuario);
+
     }
 }
