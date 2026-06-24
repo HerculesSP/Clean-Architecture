@@ -1,4 +1,4 @@
-package estudo.projeto.port.in.Specification;
+package estudo.projeto.port.in.specification;
 
 import estudo.projeto.entity.Usuario;
 import estudo.projeto.exception.NotFoundException;

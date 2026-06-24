@@ -2,8 +2,8 @@ package estudo.projeto.port.in;
 
 import estudo.projeto.entity.Usuario;
 import estudo.projeto.exception.NotFoundException;
-import estudo.projeto.port.in.Command.CreateUsuarioCommand;
-import estudo.projeto.port.in.Specification.UsuarioSpecification;
+import estudo.projeto.port.in.command.CreateUsuarioCommand;
+import estudo.projeto.port.in.specification.UsuarioSpecification;
 import estudo.projeto.port.out.SaveUsuarioPort;
 import estudo.projeto.port.out.UsuarioFindPort;
 

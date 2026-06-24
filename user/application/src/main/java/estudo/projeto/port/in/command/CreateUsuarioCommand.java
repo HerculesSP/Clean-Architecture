@@ -1,4 +1,4 @@
-package estudo.projeto.port.in.Command;
+package estudo.projeto.port.in.command;
 
 import estudo.projeto.entity.Cargo;
 
