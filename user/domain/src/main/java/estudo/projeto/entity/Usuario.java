@@ -10,9 +10,9 @@ public class Usuario {
     private final String nome;
     private final String email;
     private final Cargo cargo;
-    private final Long superiorId;
+    private final Usuario superior;
 
-    public Usuario(Long id, String nome, String email, Cargo cargo, Long superiorId) {
+    public Usuario(Long id, String nome, String email, Cargo cargo, Usuario superior) {
         if (email == null || !email.contains("@")) {
             throw new EmailInvalidoException();
         }
@@ -26,7 +26,7 @@ public class Usuario {
         this.nome = nome;
         this.email = email;
         this.cargo = cargo;
-        this.superiorId = superiorId;
+        this.superior = superior;
     }
 
     public Long getId() {
@@ -45,8 +45,8 @@ public class Usuario {
         return cargo;
     }
 
-    public Long getSuperiorId() {
-        return superiorId;
+    public Usuario getSuperior() {
+        return superior;
     }
 }
 
