@@ -1,5 +1,7 @@
 package estudo.projeto.port.out;
 
+import estudo.projeto.entity.Usuario;
+
 public interface UsuarioDeletePort {
-    void deletar(Long id);
+    void deletar(Usuario usuario);
 }

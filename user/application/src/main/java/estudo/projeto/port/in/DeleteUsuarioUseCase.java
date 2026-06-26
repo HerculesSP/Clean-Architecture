@@ -31,6 +31,6 @@ public class DeleteUsuarioUseCase {
 
         strategyCerta.resolver(usuario);
 
-        usuarioDeletePort.deletar(usuario.getId());
+        usuarioDeletePort.deletar(usuario);
     }
 }
