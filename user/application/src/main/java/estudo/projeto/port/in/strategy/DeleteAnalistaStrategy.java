@@ -10,7 +10,7 @@ public class DeleteAnalistaStrategy implements DeleteUsuarioStrategy{
     }
 
     @Override
-    public void resolver(Usuario usuario, Long novoSupervisorId) {
+    public void resolver(Usuario usuario) {
 
     }
 }

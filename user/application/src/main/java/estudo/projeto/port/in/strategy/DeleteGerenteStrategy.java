@@ -18,14 +18,11 @@ public class DeleteGerenteStrategy implements DeleteUsuarioStrategy{
     }
 
     @Override
-    public void resolver(Usuario usuario, Long novoSupervisorId) {
+    public void resolver(Usuario usuario) {
         if (subordinadosPort.hasSubordinados(usuario.getId())){
-            if (novoSupervisorId == null){
-                throw new SuperiorObrigatorioException(
-                        "Para deletar um gerente com subordinados, é obrigatório informar o ID do novo supervisor."
-                );
-            }
-            subordinadosPort.atribuirNovoSuperior(usuario.getId(), novoSupervisorId);
+            throw new SuperiorObrigatorioException(
+                    "O gerente possui subordinados e não pode ser deltado. Altere o superior dos subordinados antes."
+            );
         }
     }
 }
