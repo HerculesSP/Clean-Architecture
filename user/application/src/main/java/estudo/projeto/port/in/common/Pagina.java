@@ -2,7 +2,7 @@ package estudo.projeto.port.in.common;
 
 import java.util.List;
 
-public record Page<T>(
+public record Pagina<T>(
         List<T> conteudo,
         int paginaAtual,
         int tamanhoPagina,
