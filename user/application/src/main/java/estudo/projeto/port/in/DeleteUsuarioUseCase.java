@@ -20,14 +20,16 @@ public class DeleteUsuarioUseCase {
         this.strategies = strategies;
     }
 
-    public void executar(Long id, Long novoSuperiorId){
+    public void executar(Long id){
         Usuario usuario = usuarioFindPort.findById(id)
                 .orElseThrow(() -> new NotFoundException("Usuário com ID: " + id + " não encontrado."));
 
-        this.strategies.stream()
+        DeleteUsuarioStrategy strategyCerta = this.strategies.stream()
                 .filter(strategy -> strategy.seAplicaA(usuario.getCargo()))
                 .findFirst()
                 .orElseThrow(StrategyInexistenteException::new);
+
+        strategyCerta.resolver(usuario);
 
         usuarioDeletePort.deletar(usuario.getId());
     }
