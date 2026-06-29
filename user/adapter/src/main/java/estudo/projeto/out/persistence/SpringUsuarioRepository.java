@@ -18,9 +18,9 @@ public interface SpringUsuarioRepository extends
 
     boolean existsByEmailIgnoreCaseAndIdNot(String email, Long id);
 
-    boolean existsBySupervisorId(Long supervisorId);
+    boolean existsBySuperiorId(Long superiorId);
 
-    boolean existsBySupervisorIdAndCargoIn(Long supervisorId, List<Cargo> cargos);
+    boolean existsBySuperiorIdAndCargoIn(Long superiorId, List<Cargo> cargos);
 
     @Modifying
     @Transactional

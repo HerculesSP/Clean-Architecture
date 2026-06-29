@@ -12,11 +12,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class UsuarioAdapter implements UsuarioPersistencePort, UsuarioFindPort, UsuarioDeletePort, SubordinadosPort {
 
     private final SpringUsuarioRepository repository;
@@ -34,7 +36,7 @@ public class UsuarioAdapter implements UsuarioPersistencePort, UsuarioFindPort, 
 
     @Override
     public boolean hasSubordinados(Long superiorId) {
-        return repository.existsBySupervisorId(superiorId);
+        return repository.existsBySuperiorId(superiorId);
     }
 
     @Override
@@ -55,7 +57,7 @@ public class UsuarioAdapter implements UsuarioPersistencePort, UsuarioFindPort, 
                 .filter(c -> c.getNivel() >= cargo.getNivel())
                 .toList();
 
-        return repository.existsBySupervisorIdAndCargoIn(superiorId, cargosInvalidos);
+        return repository.existsBySuperiorIdAndCargoIn(superiorId, cargosInvalidos);
     }
 
     @Override
