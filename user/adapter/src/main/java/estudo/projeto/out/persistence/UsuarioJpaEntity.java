@@ -2,6 +2,7 @@ package estudo.projeto.out.persistence;
 
 
 import estudo.projeto.entity.Cargo;
+import estudo.projeto.entity.Email;
 import estudo.projeto.entity.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -38,7 +39,7 @@ public class UsuarioJpaEntity {
 
     public Usuario toDomain(){
         Usuario superiorDomain = this.superior != null ? this.superior.toDomain() : null;
-        return new Usuario(this.id, this.nome, this.email, this.cargo, superiorDomain);
+        return new Usuario(this.id, this.nome, new Email(this.email), this.cargo, superiorDomain);
     }
 
     public static UsuarioJpaEntity fromDomain(Usuario usuario){
@@ -47,7 +48,7 @@ public class UsuarioJpaEntity {
         UsuarioJpaEntity entity = new UsuarioJpaEntity();
         entity.setId(usuario.getId());
         entity.setNome(usuario.getNome());
-        entity.setEmail(usuario.getEmail());
+        entity.setEmail(usuario.getEmail().valor());
         entity.setCargo(usuario.getCargo());
         entity.setSuperior(fromDomain(usuario.getSuperior()));
 

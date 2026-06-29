@@ -1,5 +1,6 @@
 package estudo.projeto.port.in;
 
+import estudo.projeto.entity.Email;
 import estudo.projeto.entity.Usuario;
 import estudo.projeto.exception.NotFoundException;
 import estudo.projeto.port.in.command.UpdateUsuarioCommand;
@@ -32,7 +33,7 @@ public class UpdateUsuarioUseCase {
                     .orElseThrow(() -> new NotFoundException("Superior com o Id " + command.superiorId() + " não encontrado."));
         }
 
-        usuario.atualizarDados(command.nome(), command.email(), command.cargo(), superior);
+        usuario.atualizarDados(command.nome(), new Email(command.email()), command.cargo(), superior);
 
         validations.forEach(usuarioSpecification -> usuarioSpecification.validar(usuario));
 

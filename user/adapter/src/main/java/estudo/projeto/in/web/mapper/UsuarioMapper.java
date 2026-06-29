@@ -1,5 +1,6 @@
 package estudo.projeto.in.web.mapper;
 
+import estudo.projeto.entity.Email;
 import estudo.projeto.entity.Usuario;
 import estudo.projeto.in.web.request.TransferirSubordinadosRequest;
 import estudo.projeto.in.web.request.UsuarioRequest;
@@ -43,5 +44,18 @@ public interface UsuarioMapper {
                 paginaDomain.totalElementos(),
                 paginaDomain.totalPaginas()
         );
+    }
+    default Email mapStringToEmail(String valor) {
+        if (valor == null || valor.isBlank()) {
+            return null;
+        }
+        return new Email(valor);
+    }
+
+    default String mapEmailToString(Email email) {
+        if (email == null) {
+            return null;
+        }
+        return email.valor();
     }
 }

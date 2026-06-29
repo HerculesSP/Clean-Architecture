@@ -1,5 +1,6 @@
 package estudo.projeto.port.in;
 
+import estudo.projeto.entity.Email;
 import estudo.projeto.entity.Usuario;
 import estudo.projeto.exception.NotFoundException;
 import estudo.projeto.port.in.command.CreateUsuarioCommand;
@@ -28,7 +29,7 @@ public class CreateUsuarioUseCase {
                     .orElseThrow(() -> new NotFoundException("Superior com o Id " + command.superiorId() + " não encontrado."));
         }
 
-        Usuario usuario = new Usuario(null, command.nome(), command.email(), command.cargo(), superior);
+        Usuario usuario = new Usuario(null, command.nome(), new Email(command.email()), command.cargo(), superior);
 
         validations.forEach(usuarioSpecification -> usuarioSpecification.validar(usuario));
 

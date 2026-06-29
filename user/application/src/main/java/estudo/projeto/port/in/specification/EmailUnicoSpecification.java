@@ -15,11 +15,11 @@ public class EmailUnicoSpecification implements UsuarioSpecification{
     @Override
     public void validar(Usuario usuario) {
         if (usuario.getId() == null){
-            if (usuarioFindPort.existsByEmailIgnoreCase(usuario.getEmail())){
+            if (usuarioFindPort.existsByEmailIgnoreCase(usuario.getEmail().valor())){
                 throw new EmailExistenteException();
             }
         } else {
-            if (usuarioFindPort.existsByEmailIgnoreCaseAndIdNot(usuario.getEmail(), usuario.getId())){
+            if (usuarioFindPort.existsByEmailIgnoreCaseAndIdNot(usuario.getEmail().valor(), usuario.getId())){
                 throw new EmailExistenteException();
             }
         }

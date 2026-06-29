@@ -9,12 +9,12 @@ import estudo.projeto.exception.ViolacaoDeHierarquiaException;
 public class Usuario {
     private final Long id;
     private String nome;
-    private String email;
+    private Email email;
     private Cargo cargo;
     private Usuario superior;
 
-    public Usuario(Long id, String nome, String email, Cargo cargo, Usuario superior) {
-        if (email == null || !email.contains("@")) {
+    public Usuario(Long id, String nome, Email email, Cargo cargo, Usuario superior) {
+        if (email == null) {
             throw new EmailInvalidoException();
         }
         if(nome.isBlank()){
@@ -30,7 +30,7 @@ public class Usuario {
         this.superior = superior;
     }
 
-    public void atualizarDados(String nome, String email, Cargo cargo, Usuario superior){
+    public void atualizarDados(String nome, Email email, Cargo cargo, Usuario superior){
         if (superior != null && this.id != null && this.id.equals(superior.getId())) {
             throw new ViolacaoDeHierarquiaException("Um usuário não pode ser superior de si mesmo.");
         }
@@ -50,7 +50,7 @@ public class Usuario {
         return nome;
     }
 
-    public String getEmail() {
+    public Email getEmail() {
         return email;
     }
 
