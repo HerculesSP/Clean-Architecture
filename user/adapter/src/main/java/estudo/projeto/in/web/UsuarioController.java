@@ -72,9 +72,11 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioMapper.toResponse(usuario));
     }
 
-    @PutMapping("/trocar-superior")
-    public ResponseEntity<Void> trocar (@Valid @RequestBody TransferirSubordinadosRequest request){
-        AlterarSuperiorCommand command = usuarioMapper.toAlterarSuperiorCommand(request);
+    @PatchMapping("/{atualSuperiorId}/transferir-subordinados")
+    public ResponseEntity<Void> trocar (
+            @Valid @RequestBody TransferirSubordinadosRequest request,
+            @PathVariable @Positive Long atualSuperiorId){
+        AlterarSuperiorCommand command = usuarioMapper.toAlterarSuperiorCommand(atualSuperiorId, request);
         alterarSuperiorUseCase.executar(command);
         return ResponseEntity.ok().build();
     }

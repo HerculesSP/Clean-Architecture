@@ -22,7 +22,9 @@ public interface UsuarioMapper {
     @Mapping(target = "id", source = "id")
     UpdateUsuarioCommand toUpdateCommand(Long id, UsuarioRequest request);
 
-    AlterarSuperiorCommand toAlterarSuperiorCommand(TransferirSubordinadosRequest request);
+    @Mapping(target = "atualSuperiorId", source = "atualSuperiorId")
+    @Mapping(target = "novoSuperiorId", source = "request.novoSuperiorId")
+    AlterarSuperiorCommand toAlterarSuperiorCommand(Long atualSuperiorId, TransferirSubordinadosRequest request);
 
     UsuarioResponse toResponse(Usuario domain);
     List<UsuarioResponse> toResponseList(List<Usuario> domainList);
