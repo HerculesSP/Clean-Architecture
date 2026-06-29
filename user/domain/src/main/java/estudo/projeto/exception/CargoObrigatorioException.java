@@ -4,4 +4,9 @@ public class CargoObrigatorioException extends DomainException {
   public CargoObrigatorioException() {
       super("O cargo do usuário é obrigatório e não pode ser nulo.");
   }
+
+    @Override
+    public int getCode() {
+        return 400;
+    }
 }

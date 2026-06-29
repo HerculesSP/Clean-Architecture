@@ -1,7 +1,7 @@
 package estudo.projeto.exception;
 
-public class ViolacaoDeHierarquiaException extends DomainException {
-    public ViolacaoDeHierarquiaException(String message) {
+public class PossuiSubordinadosException extends ApplicationException {
+    public PossuiSubordinadosException(String message) {
         super(message);
     }
 
